@@ -13,15 +13,15 @@ const memories: Memory[] = [
   {
     key: 'pintura',
     title: 'Pintando juntos',
-    teaser: 'Una noche de macetas de cerámica y risas.',
-    caption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+    teaser: 'Una tarde-noche de macetas de cerámica y risas.',
+    caption: 'Esta tarde la recuerdo con mucho cariño. Llevábamos poco tiempo y, por lo general, no hacíamos este tipo de cosas, pero lo planeé justo después de una conversación donde me contaste que te gustaba pintar. Creo que fue la primera vez que me di a la tarea de escuchar algo para luego armar un plan y sorprenderte. Recuerdo que te gustó demasiado, e incluso tiempo después me dijiste que era algo que no te esperabas, y que te gustó mucho saber que escuchaba tus gustos para luego hacer cosas relacionadas con eso. Por desgracia, pasaron cosas jajaja y el cactus falleció, pero te juro que la maceta aún existe.',
     src: '/pintura.jpg',
   },
   {
     key: 'murillo',
     title: 'Murillo',
-    teaser: 'Nuestro viaje favorito, hasta ahora.',
-    caption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.',
+    teaser: 'Uno de nuestros viajes favoritos, (en el top 3).',
+    caption: 'Nuestro primer viaje juntos, y según nuestras conversaciones, siempre entraba en el top 3 de tus viajes favoritos. Lo recuerdo bastante bien: nos arriesgábamos a viajar juntos y a disfrutar de estos lugares maravillosos, y esta fue una combinación perfecta. El frío que hacía era increíble, pero también dormir juntos y darnos calor mutuamente fue lo mejor. ¿Lo recuerdas? Luego estaba la caminata, los paisajes, los termales, y ese brillo en tus ojos de lo encantada que estabas con todo.',
     src: '/murillo.jpg',
   },
 ]
@@ -47,7 +47,7 @@ const beautifulMemories: Memory[] = [
     type: 'video',
     title: 'Un regalo',
     teaser: 'La cara que pusiste al abrirlo.',
-    caption: 'Cada vez que veo este video me hace sonreír, sobre todo por tu reacción al leer la frase y saber que ya la habías visto antes — cómo asociaste eso con que ya te había dado pistas, jajaja. La historia detrás de este regalo, por supuesto, empieza por tus me gusta y tus compartidos. Me fijé en eso y lo fui guardando en mi memoria; sabía que no podía dejar que fueras espectadora. Así que fui sacando sutilmente información, como cuál era el libro que le seguía al que estabas leyendo, para ir a comprarlo e invitarte a un café porque sí, con una pequeña mentira de que tenía que comprar algo y quería invitarte a un café. Así fue como se elaboró todo el plan en una semana. Y tu reacción fue la mejor: me hiciste sonreír y me hiciste sentir que valió la pena todo el esfuerzo de hacerte ese regalo.',
+    caption: 'Cada vez que veo este video me hace sonreír, sobre todo por tu reacción al leer la frase y saber que ya la habías visto antes — cómo asociaste eso con que ya te había dado pistas, jajaja. La historia detrás de este regalo, por supuesto, empieza por tus me gusta y tus compartidos. Me fijé en eso y lo fui guardando en mi memoria; sabía que no podía dejar que fueras espectadora. Así que fui sacando sutilmente información, como cuál era el libro que le seguía al que estabas leyendo, para ir a comprarlo e invitarte a un café porque sí, con una pequeña mentira de que tenía que comprar algo y quería invitarte a un café. Así fue como se elaboró todo el plan en una semana. Y tu reacción fue la mejor: me hiciste sonreír y me hiciste sentir que valió la pena todo el esfuerzo de hacerte ese regalo. Aunque este recuerdo sea de un regalo que te di yo, la verdad es que tú siempre has sido la de las manualidades y los regalos, sabes exactamente qué escoger y cuándo sorprenderme, y eso también quería dejarlo escrito aquí.',
     src: '/regalo.mp4',
   },
 ]
