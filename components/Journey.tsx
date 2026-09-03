@@ -93,12 +93,25 @@ export default function Journey() {
   const back = () => setStep((s) => Math.max(0, s - 1))
   const submitAnswer = (value: 'yes' | 'no') => {
     setAnswer(value)
+    try {
+      localStorage.setItem('journey_answer', value)
+    } catch {
+      // localStorage can be unavailable (private mode, etc.) — not critical here.
+    }
     fetch('/api/answer', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ answer: value }),
     }).catch((err) => console.error('No se pudo guardar la respuesta', err))
   }
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('journey_answer')
+      if (saved === 'yes' || saved === 'no') setAnswer(saved)
+    } catch {
+      // Ignore — she'll just see the question again.
+    }
+  }, [])
   useEffect(() => {
     if (answer) resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [answer])
@@ -111,7 +124,7 @@ export default function Journey() {
       {step === 2 && <section className="section-inner beautiful"><Sun className="field-sun" /><div className="sunflower-field"><Sunflower delay={0} /><Sunflower delay={.4} /><Sunflower delay={.8} /><Sunflower delay={.2} /></div><Drift count={10} tone="gold" /><SectionEyebrow>LOS DÍAS BONITOS</SectionEyebrow><h2>Lo que todavía<br /><em>florece.</em></h2><p className="intro">Hay recuerdos que, incluso con el paso del tiempo, siguen teniendo un lugar especial en el corazón.</p><div className="timeline"><div className="timeline-line" />{beautifulMemories.map((m) => <article key={m.key}><MemoryCard memory={m} onOpen={() => setOpenMemory(m.key)} /></article>)}</div></section>}
       {step === 3 && <section className="section-inner difficult"><Fog /><SectionEyebrow>CON HONESTIDAD</SectionEyebrow><div className="difficult-layout"><div><h2>No todo fue<br /><em>fácil.</em></h2><p className="lead">También hubo silencios, distancia y errores. No quiero borrar esa parte de nuestra historia; prefiero mirarla con calma, reconocer que nos equivocamos, que existieron muchas cosas que en su momento no supe ver, y que, efectivamente, se puede aprender de ellas para hacer las cosas mejor.</p><p className="note">Si tú lo recuerdas distinto, o hay algo que sientes que no dije aquí, me encantaría saberlo.</p></div><div className="real-media video large"><video src="/momento.mp4" controls playsInline /></div></div></section>}
       {step === 4 && <section className="section-inner growth"><Sun className="clear-sun" /><div className="growth-art"><Whale /><div className="mini-field"><Sunflower /><Sunflower delay={.3} /></div></div><SectionEyebrow>LO QUE ENTENDÍ</SectionEyebrow><h2>Quizás crecer es<br /><em>aprender a mirar.</em></h2><p className="intro">Con el tiempo aprendí que el amor es importante, pero por sí solo no basta. Amar también es escuchar, admirar, cuidar los detalles y no huir cuando las cosas se ponen difíciles.</p><p className="intro">Porque es justo ahí cuando se elige quedarse, hablar y tener el valor de hacerlo desde un lugar más sincero.</p><p className="intro">Aprendí a reconocer mis errores, y que amar también es aprender a cuidar mejor a quien tienes al lado. No puedes huirle a las dificultades, porque entonces corres el riesgo de perder <em>lo que nunca debiste haber perdido</em>.</p><div className="real-media photo growth-media"><Image src="/juntos.jpeg" alt="Caminando juntos hacia el mar al atardecer" fill className="object-cover" sizes="420px" /></div></section>}
-      {step === 5 && <section className={`section-inner final ${answer ? `answered-${answer}` : ''}`}><Sun className="finale-sun" /><Stars count={8} /><div className="finale-motifs"><Whale /><Sunflower delay={.2} /><Sunflower delay={.6} /></div><div className="final-heart"><Heart size={25} fill="currentColor" /></div><SectionEyebrow>UNA PREGUNTA SINCERA</SectionEyebrow><h2>¿Te gustaría que<br /><em>hablemos?</em></h2>{!answer && <div className="real-media photo final-media"><Image src="/parque.jpg" alt="Nosotros en el parque" fill className="object-cover" sizes="420px" /></div>}{!answer && <div className="answer-row"><button className="answer-primary" onClick={() => submitAnswer('yes')}>Sí, me gustaría <Heart size={15} /></button><button className="answer-secondary" onClick={() => submitAnswer('no')}>Prefiero que no</button></div>}{answer === 'yes' && <div className="celebration" ref={resultRef}><div className="celebration-icon"><Heart size={22} fill="currentColor" /><Sparkles size={22} /><Heart size={22} fill="currentColor" /></div><h3>Gracias por decir que sí.</h3><p>Cuando quieras, aquí estoy — con tiempo, con calma y con ganas de escucharte.</p></div>}{answer === 'no' && <div className="grace-note" ref={resultRef}><div className="grace-icon"><Heart size={22} /></div><h3>Gracias por tu sinceridad.</h3><p>Respeto tu decisión y te deseo, de corazón, cosas bonitas.</p></div>}{answer === 'yes' && <Petals />}{answer === 'yes' && <Hearts />}</section>}
+      {step === 5 && <section className={`section-inner final ${answer ? `answered-${answer}` : ''}`}><Sun className="finale-sun" /><Stars count={8} /><div className="finale-motifs"><Whale /><Sunflower delay={.2} /><Sunflower delay={.6} /></div><div className="final-heart"><Heart size={25} fill="currentColor" /></div><SectionEyebrow>UNA PREGUNTA SINCERA</SectionEyebrow><h2>Por eso hoy te pregunto:<br /><em>¿te gustaría que hablemos?</em></h2>{!answer && <div className="real-media photo final-media"><Image src="/parque.jpg" alt="Nosotros en el parque" fill className="object-cover" sizes="420px" /></div>}{!answer && <p className="answer-rule">Importante: solo cuenta tu primera respuesta — elige con el corazón 💛</p>}{!answer && <div className="answer-row"><button className="answer-primary" onClick={() => submitAnswer('yes')}>Sí, me gustaría <Heart size={15} /></button><button className="answer-secondary" onClick={() => submitAnswer('no')}>Prefiero que no</button></div>}{answer === 'yes' && <div className="celebration" ref={resultRef}><div className="celebration-icon"><Heart size={22} fill="currentColor" /><Sparkles size={22} /><Heart size={22} fill="currentColor" /></div><h3>Gracias por decir que sí.</h3><p>Tu respuesta ya se envió a Santi. Muy pronto vas a recibir instrucciones (o alguna sorpresa) de su parte, mantente atenta a tus mensajes.</p></div>}{answer === 'no' && <div className="grace-note" ref={resultRef}><div className="grace-icon"><Heart size={22} /></div><h3>Gracias por tu sinceridad.</h3><p>Respeto tu decisión y te deseo, de corazón, cosas bonitas.</p></div>}{answer === 'yes' && <Petals />}{answer === 'yes' && <Hearts />}</section>}
     </div>
     <Nav step={step} next={next} back={back} />
     {openMemory && (() => {
