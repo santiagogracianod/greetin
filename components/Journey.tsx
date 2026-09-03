@@ -30,16 +30,16 @@ const beautifulMemories: Memory[] = [
   {
     key: 'combinados',
     title: 'Combinados',
-    teaser: 'El día que combinamos la ropa sin ponernos de acuerdo del todo.',
-    caption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Vivamus euismod nunc nec facilisis lacinia, nunc nunc lacinia nunc, nec lacinia nunc nunc nec.',
+    teaser: 'Lo que nunca te dije sobre combinar.',
+    caption: 'Siempre te molestaba con eso: cada que combinábamos, te decía que eras una envidiosa por querer vestir de los mismos colores que yo. Pero en realidad, esa era mi forma de decirte que me encantaba que nos combináramos, que me gustaba que nos viéramos parecidos y que me gustaba que nos viéramos juntos. Y aunque no lo creas, eso me hacía sentir más cerca de ti. Recuerdo que ese día nos organizamos y nos veíamos tan lindos que decidimos hacer nuestra sesión de fotos improvisada. De por sí ya íbamos tarde, pero no importó, y hasta que no sacamos la foto que nos gustaba, no nos fuimos.',
     src: '/combinados.jpg',
   },
   {
     key: 'baile',
     type: 'video',
     title: 'Nuestro baile',
-    teaser: 'Ese baile que terminó siendo nuestro.',
-    caption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
+    teaser: 'Ese baile entre nerviosismo y emoción.',
+    caption: 'Este baile es uno de mis recuerdos favoritos. Porque, aunque salió genial, no fue algo planeado. Incluso diría que fuimos obligados a bailar, todo fue presión social, porque era un momento de nuestras vidas donde nos volvíamos a ver, pero ninguno era capaz de mirar a los ojos. Y aunque había un sentimiento mutuo, no nos atrevíamos a decirlo, y se notaban los nervios y, al mismo tiempo, la emoción de estar juntos. Ese día regresé con el corazón un poquito más feliz y enamorado a mi casa. Todo el camino de regreso recordaba el baile y sonreía. Y aunque no lo planeamos, fue un momento que quedará en mi memoria para siempre.',
     src: '/baile.mp4',
   },
   {
@@ -47,7 +47,7 @@ const beautifulMemories: Memory[] = [
     type: 'video',
     title: 'Un regalo',
     teaser: 'La cara que pusiste al abrirlo.',
-    caption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.',
+    caption: 'Cada vez que veo este video me hace sonreír, sobre todo por tu reacción al leer la frase y saber que ya la habías visto antes — cómo asociaste eso con que ya te había dado pistas, jajaja. La historia detrás de este regalo, por supuesto, empieza por tus me gusta y tus compartidos. Me fijé en eso y lo fui guardando en mi memoria; sabía que no podía dejar que fueras espectadora. Así que fui sacando sutilmente información, como cuál era el libro que le seguía al que estabas leyendo, para ir a comprarlo e invitarte a un café porque sí, con una pequeña mentira de que tenía que comprar algo y quería invitarte a un café. Así fue como se elaboró todo el plan en una semana. Y tu reacción fue la mejor: me hiciste sonreír y me hiciste sentir que valió la pena todo el esfuerzo de hacerte ese regalo.',
     src: '/regalo.mp4',
   },
 ]
