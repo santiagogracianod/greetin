@@ -4,8 +4,26 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowDown, ArrowLeft, ArrowRight, Heart, Sparkles } from 'lucide-react'
 import { MediaPlaceholder, SectionEyebrow, Sunflower, Whale, WaveLines } from './MediaPlaceholder'
 import { Drift, Fog, Hearts, Petals, Stars, Sun } from './Decor'
+import { MemoryCard, MemoryModal, type Memory } from './MemoryModal'
 
 const chapters = ['El comienzo', 'Nuestra historia', 'Lo bonito', 'Lo difícil', 'Lo que entendí', 'La pregunta']
+
+const memories: Memory[] = [
+  {
+    key: 'pintura',
+    title: 'Pintando juntos',
+    teaser: 'Una noche de macetas de cerámica y risas.',
+    caption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+    image: '/pintura.jpg',
+  },
+  {
+    key: 'murillo',
+    title: 'Murillo',
+    teaser: 'Nuestro viaje favorito, hasta ahora.',
+    caption: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.',
+    image: '/murillo.jpg',
+  },
+]
 
 function Progress({ step }: { step: number }) {
   return <div className="progress-wrap" aria-label={`Recuerdo ${step + 1} de ${chapters.length}`}><div className="progress"><i style={{ width: `${((step + 1) / chapters.length) * 100}%` }} /></div></div>
@@ -42,6 +60,7 @@ function OceanArt() {
 export default function Journey() {
   const [step, setStep] = useState(0)
   const [answer, setAnswer] = useState<string | null>(null)
+  const [openMemory, setOpenMemory] = useState<string | null>(null)
   const resultRef = useRef<HTMLDivElement>(null)
   const next = () => setStep((s) => Math.min(5, s + 1))
   const back = () => setStep((s) => Math.max(0, s - 1))
@@ -61,12 +80,16 @@ export default function Journey() {
     <Progress step={step} />
     <div className="screen">
       {step === 0 && <section className="welcome section-inner"><div className="welcome-copy"><SectionEyebrow>UNA CARTA ABIERTA</SectionEyebrow><h1>Algunas historias<br /><em>merecen</em> otra mirada.</h1><p className="lead">Este pequeño viaje guarda recuerdos, aprendizajes y todo eso que todavía se queda bailando dentro.</p><button className="circle-btn" onClick={next} aria-label="Comenzar"><ArrowDown size={22} /></button><span className="scroll-label">comenzar el viaje</span></div><OceanArt /></section>}
-      {step === 1 && <section className="section-inner story"><Sun className="dawn-sun" /><WaveLines /><SectionEyebrow>EL MAPA</SectionEyebrow><div className="title-row"><h2>Donde todo<br /><em>comenzó.</em></h2><p>Hay momentos que parecen pequeños cuando suceden, pero con el tiempo descubrimos que estaban marcando el inicio de algo.</p></div><div className="timeline"><div className="timeline-line" /><article><span className="timeline-date">FECHA / 01</span><div><h3>El primer encuentro</h3><p>Escribe aquí cómo se conocieron, qué pensaste ese día o ese detalle que nunca olvidaste.</p></div><MediaPlaceholder type="photo" label="Foto del comienzo" /></article><article><span className="timeline-date">FECHA / 02</span><div><h3>Ese momento</h3><p>Un recuerdo que todavía te hace sonreír. Puede ser una salida, una conversación o una coincidencia.</p></div><MediaPlaceholder type="video" label="Video del recuerdo" /></article></div></section>}
+      {step === 1 && <section className="section-inner story"><Sun className="dawn-sun" /><SectionEyebrow>NUESTROS INICIOS</SectionEyebrow><div className="title-row"><h2>Donde todo<br /><em>comenzó.</em></h2><p>Hay momentos que parecen pequeños cuando suceden, pero con el tiempo descubrimos que estaban marcando el inicio de algo.</p></div><div className="timeline"><div className="timeline-line" />{memories.map((m) => <article key={m.key}><MemoryCard memory={m} onOpen={() => setOpenMemory(m.key)} /></article>)}</div></section>}
       {step === 2 && <section className="section-inner beautiful"><Sun className="field-sun" /><div className="sunflower-field"><Sunflower delay={0} /><Sunflower delay={.4} /><Sunflower delay={.8} /><Sunflower delay={.2} /></div><Drift count={10} tone="gold" /><SectionEyebrow>LOS DÍAS BONITOS</SectionEyebrow><h2>Lo que todavía<br /><em>florece.</em></h2><p className="intro">Aquí van las cosas que hicieron que valiera la pena: los bailes, las risas sin sentido y esos instantes que se sintieron como casa.</p><div className="memory-grid"><MediaPlaceholder label="Una foto que nos representa" /><MediaPlaceholder type="video" label="Nuestro baile" className="tall" /><MediaPlaceholder label="Un día favorito" /></div></section>}
       {step === 3 && <section className="section-inner difficult"><Fog /><SectionEyebrow>CON HONESTIDAD</SectionEyebrow><div className="difficult-layout"><div><h2>No todo fue<br /><em>fácil.</em></h2><p className="lead">También hubo silencios, distancia y errores. No quiero borrar esa parte de la historia; quiero mirarla con más calma y reconocer lo que pude hacer mejor.</p><p className="note">Este espacio puede convertirse en tus propias palabras: honestas, sencillas y sin culpas.</p></div><MediaPlaceholder type="photo" label="Una imagen para este capítulo" className="large" /></div></section>}
       {step === 4 && <section className="section-inner growth"><Sun className="clear-sun" /><div className="growth-art"><Whale /><div className="mini-field"><Sunflower /><Sunflower delay={.3} /></div></div><SectionEyebrow>LO QUE ENTENDÍ</SectionEyebrow><h2>Quizás crecer es<br /><em>aprender a mirar.</em></h2><p className="intro">Con el tiempo entendí que querer también es escuchar, cuidar los detalles y tener el valor de hablar desde un lugar más sincero.</p><MediaPlaceholder type="video" label="Un video de lo que hemos aprendido" className="growth-media" /></section>}
       {step === 5 && <section className={`section-inner final ${answer ? `answered-${answer}` : ''}`}><Sun className="finale-sun" /><Stars count={8} /><div className="finale-motifs"><Whale /><Sunflower delay={.2} /><Sunflower delay={.6} /></div><div className="final-heart"><Heart size={25} fill="currentColor" /></div><SectionEyebrow>UNA PREGUNTA SINCERA</SectionEyebrow><h2>¿Te gustaría que<br /><em>hablemos?</em></h2>{!answer && <MediaPlaceholder type="photo" label="Nuestra foto especial" className="final-media" />}{!answer && <div className="answer-row"><button className="answer-primary" onClick={() => submitAnswer('yes')}>Sí, me gustaría <Heart size={15} /></button><button className="answer-secondary" onClick={() => submitAnswer('no')}>Prefiero que no</button></div>}{answer === 'yes' && <div className="celebration" ref={resultRef}><div className="celebration-icon"><Heart size={22} fill="currentColor" /><Sparkles size={22} /><Heart size={22} fill="currentColor" /></div><h3>Gracias por decir que sí.</h3><p>Cuando quieras, aquí estoy — con tiempo, con calma y con ganas de escucharte.</p></div>}{answer === 'no' && <div className="grace-note" ref={resultRef}><div className="grace-icon"><Heart size={22} /></div><h3>Gracias por tu sinceridad.</h3><p>Respeto tu decisión y te deseo, de corazón, cosas bonitas.</p></div>}{answer === 'yes' && <Petals />}{answer === 'yes' && <Hearts />}</section>}
     </div>
     <Nav step={step} next={next} back={back} />
+    {openMemory && (() => {
+      const memory = memories.find((m) => m.key === openMemory)
+      return memory ? <MemoryModal memory={memory} onClose={() => setOpenMemory(null)} /> : null
+    })()}
   </main>
 }
