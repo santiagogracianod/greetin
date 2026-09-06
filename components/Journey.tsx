@@ -113,6 +113,9 @@ export default function Journey() {
     }
   }, [])
   useEffect(() => {
+    fetch('/api/visit', { method: 'POST' }).catch(() => {})
+  }, [])
+  useEffect(() => {
     if (answer) resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [answer])
   return <main className={`journey step-${step}`}>
