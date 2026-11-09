@@ -42,6 +42,21 @@ h1,h2,h3,p { margin-top:0; } h1,h2 { font-weight:400; letter-spacing:-.045em; li
 .journey-nav { position:fixed; z-index:4; bottom:25px; left:clamp(20px,5vw,80px); right:clamp(20px,5vw,80px); display:flex; justify-content:space-between; align-items:center; font:10px Arial,sans-serif; letter-spacing:.14em; text-transform:uppercase; }.next-btn,.back-btn { border:0; background:transparent; color:inherit; display:flex; align-items:center; gap:9px; transition:transform .2s ease; }.next-btn { color:var(--gold); }.back-btn { opacity:.55; }.next-btn:hover { transform:translateX(3px); }.back-btn:hover { transform:translateX(-3px); }
 @keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)} } @keyframes sway { 0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg)} } @keyframes swim { 0%{transform:translate(0,0) rotate(0deg) scale(1,1)} 15%{transform:translate(-5px,-9px) rotate(-2.5deg) scale(1.012,.99)} 32%{transform:translate(-1px,-15px) rotate(1deg) scale(.99,1.012)} 48%{transform:translate(5px,-7px) rotate(2.5deg) scale(1.012,.99)} 63%{transform:translate(3px,3px) rotate(1deg) scale(1,1)} 80%{transform:translate(-3px,9px) rotate(-2deg) scale(.99,1.012)} 100%{transform:translate(0,0) rotate(0deg) scale(1,1)} } @keyframes spout { 0%{transform:translateY(0) scale(.4); opacity:0} 4%{opacity:.85} 20%{transform:translateY(-24px) scale(1.15); opacity:0} 100%{opacity:0} } @keyframes sectionIn { from{opacity:0; transform:translateY(22px)} to{opacity:1; transform:translateY(0)} } @keyframes twinkle { 0%,100%{opacity:.3} 50%{opacity:.9} } @keyframes pulseGlow { 0%,100%{box-shadow:0 0 0 0 rgba(231,185,54,.4)} 50%{box-shadow:0 0 0 9px rgba(231,185,54,0)} } @keyframes drift-x { from{transform:translateX(-8%)} to{transform:translateX(8%)} } @keyframes rise { 0%{transform:translateY(0) translateX(0); opacity:0} 12%{opacity:.6} 88%{opacity:.35} 100%{transform:translateY(-260px) translateX(14px); opacity:0} } @keyframes petal-drop { 0%{transform:translate(0,0) rotate(0deg); opacity:0} 8%{opacity:.95} 100%{transform:translate(34px,115vh) rotate(340deg); opacity:.2} } @keyframes heart-rise { 0%{transform:translate(0,0) rotate(0deg); opacity:0} 10%{opacity:.85} 100%{transform:translate(18px,-110vh) rotate(16deg); opacity:0} } @keyframes glowPulse { 0%,100%{box-shadow:0 0 0 0 rgba(231,185,54,.16)} 50%{box-shadow:0 0 46px 8px rgba(231,185,54,.2)} } @keyframes starTwinkle { 0%,100%{opacity:0} 45%,55%{opacity:.9} }
 
+/* --- Farewell screen --- */
+.farewell { min-height:100vh; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--ocean); }
+.farewell-bg { object-fit:cover; z-index:0; filter:saturate(.85); }
+.farewell-veil { position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(8,24,38,.72) 0%, rgba(8,24,38,.55) 45%, rgba(8,24,38,.78) 100%); }
+.farewell-content { position:relative; z-index:2; max-width:560px; margin:0 auto; padding:0 28px; text-align:center; color:#f7f3eb; animation: sectionIn 1s cubic-bezier(.16,1,.3,1) both; }
+.farewell-heart { color:var(--gold); margin-bottom:26px; opacity:.9; }
+.farewell-line { font-size:clamp(17px,2.4vw,21px); line-height:1.75; font-style:italic; opacity:.92; margin:0 0 18px; }
+.farewell-line:last-child { margin-bottom:0; }
+@media (max-width: 640px) {
+  .farewell { overflow:visible; height:auto; align-items:flex-start; }
+  .farewell-bg { object-fit:contain; object-position:center top; }
+  .farewell-veil { background:linear-gradient(180deg, rgba(8,24,38,.5) 0%, rgba(8,24,38,.35) 32%, rgba(8,24,38,.9) 60%, rgba(8,24,38,.98) 100%); }
+  .farewell-content { margin-top:38vh; padding-bottom:60px; }
+}
+
 /* --- Decor: sun / stars / fog / drift / petals / finale --- */
 .sun-glyph { color:var(--gold); filter:drop-shadow(0 0 26px rgba(231,185,54,.5)); pointer-events:none; }
 .dawn-sun { position:absolute; top:-10px; right:6%; width:120px; height:120px; opacity:.85; }

@@ -1,5 +1,5 @@
-import Journey from '@/components/Journey'
+import Farewell from '@/components/Farewell'
 
 export default function Page() {
-  return <Journey />
+  return <Farewell />
 }
